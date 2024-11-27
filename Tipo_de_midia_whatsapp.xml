@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zabbix_export>
+    <version>6.0</version>
+    <date>2023-05-29T16:07:28Z</date>
+    <media_types>
+        <media_type>
+            <name>WhatsApp</name>
+            <type>SCRIPT</type>
+            <script_name>zabbix_script_alert_whatsapp.sh</script_name>
+            <parameters>
+                <parameter>{ALERT.SENDTO}</parameter>
+                <parameter>{ALERT.SUBJECT}</parameter>
+                <parameter>{ALERT.MESSAGE}</parameter>
+            </parameters>
+            <message_templates>
+                <message_template>
+                    <event_source>TRIGGERS</event_source>
+                    <operation_mode>PROBLEM</operation_mode>
+                    <subject>❌ *Problema: {HOST.NAME}*</subject>
+                    <message>\n*{EVENT.NAME}*\n{ITEM.NAME1} {ITEM.VALUE1}\n*{HOST.IP}*\n_{EVENT.SEVERITY}_</message>
+                </message_template>
+                <message_template>
+                    <event_source>TRIGGERS</event_source>
+                    <operation_mode>RECOVERY</operation_mode>
+                    <subject>✅ *Resolvido: {HOST.NAME}*</subject>
+                    <message>\n*{EVENT.NAME}*\n{ITEM.NAME1} {ITEM.VALUE1}\n*{HOST.IP}*\n_{EVENT.SEVERITY}_</message>
+                </message_template>
+            </message_templates>
+        </media_type>
+    </media_types>
+</zabbix_export>
